@@ -19,3 +19,10 @@ models:
             tests:
                 - unique
                 - not_null
+
+sources:
+  - name: FEATURE_STORE_SRC
+    database: SNOWML_FEATURE_STORE_DBT_DEMO  
+    schema: PUBLIC
+    tables:
+      - name: WINE_DATA
