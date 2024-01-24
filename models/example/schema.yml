@@ -1,28 +1,26 @@
-
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: transactions
+    description: My transformation written in Python
+    config:
+      database: DBT_COALESCE
+      schema: _FEATURES
+      materialized: table
+      tags: ['python']
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: customers
+    description: My transformation written in Python
+    config:
+      database: DBT_COALESCE
+      schema: _FEATURES
+      materialized: table
+      tags: ['python']
 
-sources:
-  - name: FEATURE_STORE_SRC
-    database: SNOWML_FEATURE_STORE_DBT_DEMO  
-    schema: PUBLIC
-    tables:
-      - name: WINE_DATA
+  - name: terminals
+    description: My transformation written in Python
+    config:
+      database: DBT_COALESCE
+      schema: _FEATURES
+      materialized: table
+      tags: ['python']
