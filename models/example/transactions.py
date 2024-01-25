@@ -1,8 +1,8 @@
 import snowflake.snowpark.functions as F
 
 def model(dbt, session):
-    session.use_schema("_BATCH_RAW")
-    df_cust_trx_fraud = session.table("_BATCH_RAW.CUSTOMER_TRANSACTIONS_FRAUD")
+    session.use_schema("DBT_DATA")
+    df_cust_trx_fraud = session.table('"SNOWML_FEATURE_STORE_DBT_DEMO"."DBT_DATA"."CUSTOMER_TRANSACTIONS_FRAUD"')
 
     df_date_time_feat = df_cust_trx_fraud.with_columns(
         [ "CT_DATETIME", "TX_DURING_WEEKEND", "TX_DURING_NIGHT"],

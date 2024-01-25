@@ -4,8 +4,8 @@ from snowflake.snowpark import Window
 zero_if_null = F.builtin("ZEROIFNULL")
 
 def model(dbt, session):
-    session.use_schema("_BATCH_RAW")
-    df_cust_trx_fraud = session.table('"DBT_COALESCE"."_BATCH_RAW"."CUSTOMER_TRANSACTIONS_FRAUD"')
+    session.use_schema("DBT_DATA")
+    df_cust_trx_fraud = session.table('"SNOWML_FEATURE_STORE_DBT_DEMO"."DBT_DATA"."CUSTOMER_TRANSACTIONS_FRAUD"')
 
     # Get the Date Information for the Dataset (number of days and start_date)
     date_info = df_cust_trx_fraud.select(
@@ -20,7 +20,7 @@ def model(dbt, session):
     df_days = session.table("df_days")
 
     # Since we aggregate by terminal and day and not all terminals have transactions for all dates we cross join our date dataframe with our terminal table so each terminal will have one row for each date
-    distinct_terminals = session.sql('SELECT DISTINCT terminal_id FROM "DBT_COALESCE"."_BATCH_RAW"."CUSTOMER_TRANSACTIONS_FRAUD" ORDER BY terminal_id')
+    distinct_terminals = session.sql('SELECT DISTINCT terminal_id FROM "SNOWML_FEATURE_STORE_DBT_DEMO"."DBT_DATA"."CUSTOMER_TRANSACTIONS_FRAUD" ORDER BY terminal_id')
     distinct_terminals.write.save_as_table("TERMINALS", create_temp_table=True)
 
     df_terminals = session.table("TERMINALS").select("TERMINAL_ID")

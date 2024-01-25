@@ -4,23 +4,23 @@ models:
   - name: transactions
     description: My transformation written in Python
     config:
-      database: DBT_COALESCE
-      schema: _FEATURES
+      database: SNOWML_FEATURE_STORE_DBT_DEMO
+      schema: DBT_DATA
       materialized: table
       tags: ['python']
 
   - name: customers
     description: My transformation written in Python
     config:
-      database: DBT_COALESCE
-      schema: _FEATURES
+      database: SNOWML_FEATURE_STORE_DBT_DEMO
+      schema: DBT_DATA
       materialized: table
       tags: ['python']
 
   - name: terminals
     description: My transformation written in Python
     config:
-      database: DBT_COALESCE
-      schema: _FEATURES
+      database: SNOWML_FEATURE_STORE_DBT_DEMO
+      schema: DBT_DATA
       materialized: table
       tags: ['python']
