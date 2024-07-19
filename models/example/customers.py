@@ -4,8 +4,7 @@ from snowflake.snowpark import Window
 zero_if_null = F.builtin("ZEROIFNULL")
 
 def model(dbt, session):
-    session.use_schema("DBT_DATA")
-    df_cust_trx_fraud = session.table('"SNOWML_FEATURE_STORE_DBT_DEMO"."DBT_DATA"."CUSTOMER_TRANSACTIONS_FRAUD"')
+    df_cust_trx_fraud = session.table('CUSTOMER_TRANSACTIONS_FRAUD')
 
     # Get the Date Information for the Dataset (number of days and start_date)
     date_info = df_cust_trx_fraud.select(
@@ -21,7 +20,7 @@ def model(dbt, session):
 
     # Since we aggregate by customer and day and not all customers have transactions for all dates we cross join our date dataframe with our 
     # customer table so each customer will have one row for each date
-    distinct_customers = session.sql('SELECT DISTINCT customer_id FROM "SNOWML_FEATURE_STORE_DBT_DEMO"."DBT_DATA"."CUSTOMER_TRANSACTIONS_FRAUD" ORDER BY customer_id')
+    distinct_customers = session.sql('SELECT DISTINCT customer_id FROM CUSTOMER_TRANSACTIONS_FRAUD ORDER BY customer_id')
     distinct_customers.write.save_as_table("CUSTOMERS", create_temp_table=True)
 
     df_customers = session.table("CUSTOMERS").select("CUSTOMER_ID")

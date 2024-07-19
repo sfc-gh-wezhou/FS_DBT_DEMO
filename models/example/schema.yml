@@ -5,7 +5,7 @@ models:
     description: My transformation written in Python
     config:
       database: SNOWML_FEATURE_STORE_DBT_DEMO
-      schema: DBT_DATA
+      schema: FS_DBT_DEMO
       materialized: table
       tags: ['python']
 
@@ -13,7 +13,7 @@ models:
     description: My transformation written in Python
     config:
       database: SNOWML_FEATURE_STORE_DBT_DEMO
-      schema: DBT_DATA
+      schema: FS_DBT_DEMO
       materialized: table
       tags: ['python']
 
@@ -21,6 +21,6 @@ models:
     description: My transformation written in Python
     config:
       database: SNOWML_FEATURE_STORE_DBT_DEMO
-      schema: DBT_DATA
+      schema: FS_DBT_DEMO
       materialized: table
       tags: ['python']
